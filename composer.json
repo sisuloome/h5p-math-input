@@ -1,0 +1,22 @@
+{
+  "name": "drupal/h5p_math_input",
+  "type": "drupal-module",
+  "description": "Implements Visual Math Editor to H5P fields.",
+  "keywords": ["Drupal", "Math Input", "Math Editor", "h5p"],
+  "license": "MIT",
+  "homepage": "https://github.com/sisuloome/h5p_math_input",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://github.com/sisuloome/h5p_math_input/issues",
+    "source": "https://github.com/sisuloome/h5p_math_input"
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    }
+  ],
+  "require": { 
+    "drupal/h5p": "^1.0@RC"
+  }
+}

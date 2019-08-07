@@ -1,0 +1,7 @@
+name: H5P Visual Math Input Module
+description: Implements Visual Math Editor to h5p fields.
+package: Custom
+type: module
+core: 8.x
+dependencies:
+  - h5p
