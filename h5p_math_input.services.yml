@@ -1,0 +1,9 @@
+services:
+#  h5p_quiz_finished_events_subscriber:
+#    class: '\Drupal\h5p_math_input\EventSubscriber\FinishedEventsSubscriber'
+#    tags:
+#      - { name: 'event_subscriber' }
+  my_config_events_subscriber:
+    class: '\Drupal\h5p_math_input\EventSubscriber\ConfigEventsSubscriber'
+    tags:
+      - { name: 'event_subscriber' }
