@@ -1,0 +1,16 @@
+<?php
+
+function h5p_math_input_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  error_log(print_r($form_id, true));
+  if ($form_id == 'node_interactive_content_form') {
+    $form['#after_build'] []= 'h5p_math_input_content_node_form_process';
+  }
+}
+
+function h5p_math_input_content_node_form_process(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  error_log("after interactive content build");
+
+  //siit saaks midagi teha selle asjaga vist
+
+  return $form;
+}
