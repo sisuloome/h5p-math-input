@@ -10,7 +10,26 @@ function h5p_math_input_form_alter(&$form, \Drupal\Core\Form\FormStateInterface 
 function h5p_math_input_content_node_form_process(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
   error_log("after interactive content build");
 
-  //siit saaks midagi teha selle asjaga vist
+  //siit saaks midagi teha selle asjaga
+  $form['#attached']['library'] []= 'h5p_math_input/ck-plugin';
+
+  $object = $form["field_h5p"];
+  
+  //iterate_object($object, 2);
 
   return $form;
+}
+
+function iterate_object($object, $depth, $prefix = "") {
+  if ($depth == 0) return;
+  foreach ($object as $key => $value) {
+
+    if (!is_array($value) && !is_object($value)) {
+      error_log($prefix . $key . ": " . $value);
+    }
+    else {
+      error_log($prefix . $key);
+      iterate_object($value, $depth - 1, $prefix . "  ");
+    }
+  }
 }
