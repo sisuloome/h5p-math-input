@@ -1,10 +1,12 @@
-console.log("test");
-
-var done = false;
-
-(function ($, drupalSettings) {
+(function ($) {
   $(document).ready(function () {
-    console.log("xd"); 
-    console.log(drupalSettings.h5pMathInput.sourcePath);
+    console.log(CKEDITOR);
+
+    /* doesnt work in IE (any version) */
+    var script = document.currentScript;
+    var fullUrl = script.src;
+    console.log(fullUrl);
+    /* doesnt work in IE (any version) */
+    
   });
-})(jQuery, drupalSettings);
+})(H5P.jQuery);

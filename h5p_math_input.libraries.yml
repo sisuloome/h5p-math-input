@@ -1,7 +1,0 @@
-ck-plugin:
-  version: 1.0
-  js:
-    js/ckplugin.js: {}
-  dependencies:
-    - core/jquery
-    - core/drupalSettings
