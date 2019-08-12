@@ -4,3 +4,4 @@ ck-plugin:
     js/ckplugin.js: {}
   dependencies:
     - core/jquery
+    - core/drupalSettings

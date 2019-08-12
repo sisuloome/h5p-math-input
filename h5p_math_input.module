@@ -12,6 +12,7 @@ function h5p_math_input_content_node_form_process(&$form, \Drupal\Core\Form\Form
 
   //siit saaks midagi teha selle asjaga
   $form['#attached']['library'] []= 'h5p_math_input/ck-plugin';
+  $form['#attached']['drupalSettings']['h5pMathInput']['sourcePath'] = drupal_get_path('module', 'h5p_math_input');
 
   $object = $form["field_h5p"];
   

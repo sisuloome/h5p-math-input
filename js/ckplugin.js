@@ -1,14 +1,10 @@
 console.log("test");
 
-var xd = true;
+var done = false;
 
-(function ($, Drupal) {
-  Drupal.behaviors.h5pMathInput = {
-    attach: function(context, settings) {
-      if (xd) {
-        console.log("xd");
-        xd = false;
-      }
-    }
-  }
-})(jQuery, Drupal);
+(function ($, drupalSettings) {
+  $(document).ready(function () {
+    console.log("xd"); 
+    console.log(drupalSettings.h5pMathInput.sourcePath);
+  });
+})(jQuery, drupalSettings);
