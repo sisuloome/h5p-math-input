@@ -1,11 +1,41 @@
 <?php
 
 function h5p_math_input_h5p_scripts_alter(&$scripts, $libraries, $mode) {
-  error_log("scripts altered..");
   if ($mode == 'editor') {
     $scripts []= (object) [
-      'path' => drupal_get_path('module', 'h5p_math_input') . '/js/ckplugin.js',
-      'version' => '?v=1.0.2'
+      'path' => drupal_get_path('module', 'h5p_math_input') . '/notdrupal/ckplugin.js',
+      'version' => '?v=1.0.16'
     ];
   }
 }
+
+function h5p_math_input_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'node_interactive_content_form') {
+    $form['#after_build'] []= 'h5p_math_input_content_node_form_process';
+  }
+}
+
+function h5p_math_input_content_node_form_process(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  $form['#attached']['library'] []= 'h5p_math_input/ck-plugin-loader';
+  $form['#attached']['drupalSettings']['h5pMathInput']['path'] = base_path() . drupal_get_path('module', 'h5p_math_input') . "/notdrupal";
+
+  /*
+  $form['#attached']['drupalSettings']['h5peditor']['assets']['js'] []= [
+    drupal_get_path('module', 'h5p_math_input') . '/notdrupal/ckplugin.js',
+    'version' => '?v=1.0.16'
+  ];
+  $form['#attached']['drupalSettings']['h5peditor']['ck_vme'] = drupal_get_path('module', 'h5p_math_input') . '/notdrupal/ck_vme/';
+  $form['#attached']['drupalSettings']['h5peditor']['iframedialog'] = drupal_get_path('module', 'h5p_math_input') . '/notdrupal/iframedialog/';
+  */
+  return $form;
+}
+/*
+function h5p_math_input_preprocess_html(&$variables) {
+  $variables['#attached']['drupalSettings']['h5peditor']['assets']['js'] []= [
+    drupal_get_path('module', 'h5p_math_input') . '/notdrupal/ckplugin.js',
+    'version' => '?v=1.0.16'
+  ];
+  $variables['#attached']['drupalSettings']['h5peditor']['ck_vme'] = drupal_get_path('module', 'h5p_math_input') . '/notdrupal/ck_vme/';
+  $variables['#attached']['drupalSettings']['h5peditor']['iframedialog'] = drupal_get_path('module', 'h5p_math_input') . '/notdrupal/iframedialog/';
+}
+*/
