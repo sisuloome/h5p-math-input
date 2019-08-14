@@ -21,9 +21,10 @@ CKEDITOR.plugins.add( 'ck_vme', {
             },
             {
                 onLoad: function () {
-                    editor.resize( '100%', '850' )
+                    
                 },
                 onShow: function() {
+                    editor.resize( '100%', '850' )
                     // Detect if edit or new mode (if new create an empty element)
                     var selection = editor.getSelection();
                     var selected_text = editor.getSelection().getSelectedText();
