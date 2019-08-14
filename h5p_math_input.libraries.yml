@@ -1,8 +1,0 @@
-ck-plugin-loader:
-  version: 1.0
-  js:
-    js/loader.js: {}
-  dependencies:
-    - core/jquery 
-    - core/drupalSettings
-    - core/drupal

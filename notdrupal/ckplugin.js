@@ -1,9 +1,13 @@
-console.log("xd");
+/* doesnt work in IE (any version) */
+var fullUrl = document.currentScript.src;
+/* doesnt work in IE (any version) */
+var folder = fullUrl.substring(0, fullUrl.lastIndexOf('/'));
+console.log(folder);
 
 var H5PEditor = H5PEditor || {};
 H5PEditor.HtmlAddons = H5PEditor.HtmlAddons || {};
-H5PEditor.HtmlAddons.mathinput = H5PEditor.HtmlAddons.mathinput || {};
-H5PEditor.HtmlAddons.mathinput.mathinput = function (config, tags) {
+H5PEditor.HtmlAddons.eqneditor = H5PEditor.HtmlAddons.eqneditor || {};
+H5PEditor.HtmlAddons.eqneditor.eqneditor = function (config, tags) {
 
   console.log("running");
 
@@ -18,19 +22,12 @@ H5PEditor.HtmlAddons.mathinput.mathinput = function (config, tags) {
 
   tags.push('sup');
   tags.push('img');
-  tags.push('mathinput');
+  tags.push('eqneditor');
 };
 
 (function ($) {
   $(document).ready(function () {
     console.log(CKEDITOR);
-
-    /* doesnt work in IE (any version) */
-    var fullUrl = document.currentScript.src;
-    /* doesnt work in IE (any version) */
-
-    var folder = fullUrl.substring(0, fullUrl.lastIndexOf('/'));
-    console.log(folder);
 
     if (window.CKEDITOR !== undefined) {
       CKEDITOR.plugins.addExternal('ck_vme', folder + '/ck_vme/');

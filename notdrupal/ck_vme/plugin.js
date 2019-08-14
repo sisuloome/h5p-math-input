@@ -9,7 +9,7 @@ CKEDITOR.plugins.add( 'ck_vme', {
         CKEDITOR.dialog.addIframe(
             'vme.dlg',
             'VisualMathEditor',
-            'VisualMathEditor/' + 'VisualMathEditor.html?runLocal&style=bootstrap',
+            folder + '/ck_vme/VisualMathEditor/VisualMathEditor.html?runLocal&style=bootstrap',
             800,
             600,
             function() {

@@ -4,38 +4,51 @@ function h5p_math_input_h5p_scripts_alter(&$scripts, $libraries, $mode) {
   if ($mode == 'editor') {
     $scripts []= (object) [
       'path' => drupal_get_path('module', 'h5p_math_input') . '/notdrupal/ckplugin.js',
-      'version' => '?v=1.0.16'
+      'version' => '?v=1.0.21'
     ];
   }
 }
 
-function h5p_math_input_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
-  if ($form_id == 'node_interactive_content_form') {
-    $form['#after_build'] []= 'h5p_math_input_content_node_form_process';
+function h5p_math_input_h5p_semantics_alter(&$semantics, $machine_name, $major_version = null, $minor_version = null) {
+
+  //praeguseks copy-paste vanast projektist sest ei tea veel mida täpselt siia vaja panna
+
+  switch ($machine_name){
+    case 'H5P.SingleChoiceSet':
+      array_push($semantics[0]->field->fields[0]->tags,'sub','sup', 'eqneditor');
+      array_push($semantics[0]->field->fields[1]->field->tags,'sub','sup', 'eqneditor');
+      break;
+    case 'H5P.DragText':
+      array_push($semantics[0]->tags,'sub','sup');
+      // Change field type from textarea to WYSIWYG!
+      $semantics[1]->widget = 'html';
+      $semantics[1]->tags = array('p','sub','sup');
+      break;
+    case 'H5P.AdvancedText':
+      array_push($semantics[0]->tags,'sub','sup', 'eqneditor');
+      break;
+    case 'H5P.Text':
+      array_push($semantics[0]->tags,'sub','sup', 'eqneditor');
+      break;
+    case 'H5P.Blanks':
+      array_push($semantics[1]->tags,'sub','sup');
+      array_push($semantics[2]->field->tags,'sub','sup', 'eqneditor');
+      break;
+    case 'H5P.MultiChoice':
+      array_push($semantics[1]->tags,'eqneditor');
+      array_push($semantics[2]->field->fields[0]->tags,'eqneditor');
+      break;
+    case 'H5P.MarkTheWords':
+      array_push($semantics[0]->tags,'sub','sup');
+      array_push($semantics[1]->tags,'sub','sup');
+      break;
+    case 'H5P.TrueFalse':
+      array_push($semantics[1]->tags,'eqneditor');
+      break;
+    case 'H5P.ImageMultipleHotspotQuestion':
+      // Change field type from textarea to WYSIWYG!
+      $semantics[0]->fields[1]->fields[0]->widget = 'html';
+      $semantics[0]->fields[1]->fields[0]->tags = array('p','sub','sup', 'eqneditor');
+      break;
   }
 }
-
-function h5p_math_input_content_node_form_process(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
-  $form['#attached']['library'] []= 'h5p_math_input/ck-plugin-loader';
-  $form['#attached']['drupalSettings']['h5pMathInput']['path'] = base_path() . drupal_get_path('module', 'h5p_math_input') . "/notdrupal";
-
-  /*
-  $form['#attached']['drupalSettings']['h5peditor']['assets']['js'] []= [
-    drupal_get_path('module', 'h5p_math_input') . '/notdrupal/ckplugin.js',
-    'version' => '?v=1.0.16'
-  ];
-  $form['#attached']['drupalSettings']['h5peditor']['ck_vme'] = drupal_get_path('module', 'h5p_math_input') . '/notdrupal/ck_vme/';
-  $form['#attached']['drupalSettings']['h5peditor']['iframedialog'] = drupal_get_path('module', 'h5p_math_input') . '/notdrupal/iframedialog/';
-  */
-  return $form;
-}
-/*
-function h5p_math_input_preprocess_html(&$variables) {
-  $variables['#attached']['drupalSettings']['h5peditor']['assets']['js'] []= [
-    drupal_get_path('module', 'h5p_math_input') . '/notdrupal/ckplugin.js',
-    'version' => '?v=1.0.16'
-  ];
-  $variables['#attached']['drupalSettings']['h5peditor']['ck_vme'] = drupal_get_path('module', 'h5p_math_input') . '/notdrupal/ck_vme/';
-  $variables['#attached']['drupalSettings']['h5peditor']['iframedialog'] = drupal_get_path('module', 'h5p_math_input') . '/notdrupal/iframedialog/';
-}
-*/
