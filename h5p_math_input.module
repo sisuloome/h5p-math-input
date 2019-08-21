@@ -3,7 +3,7 @@
 function h5p_math_input_h5p_scripts_alter(&$scripts, $libraries, $mode) {
   if ($mode == 'editor') {
     $scripts []= (object) [
-      'path' => drupal_get_path('module', 'h5p_math_input') . '/notdrupal/ckplugin.js',
+      'path' => drupal_get_path('module', 'h5p_math_input') . '/vendor/ckplugin.js',
       'version' => '?v=1.0.21'
     ];
   }
