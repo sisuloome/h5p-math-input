@@ -6,4 +6,4 @@ Implements Visual Math Editor for h5p in Drupal 8.
 - install module
 
 # Extra steps after installation
-- Add H5P module MathDisplay
+- Add H5P module MathDisplay (https://github.com/h5p/h5p-math-display)
