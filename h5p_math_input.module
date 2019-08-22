@@ -11,20 +11,22 @@ function h5p_math_input_h5p_scripts_alter(&$scripts, $libraries, $mode) {
 
 function h5p_math_input_h5p_semantics_alter(&$semantics, $machine_name, $major_version = null, $minor_version = null) {
   foreach ($semantics as $object) {
-    h5p_math_input_recurse_h5p_semantics_object($object);
+    _h5p_math_input_recurse_h5p_semantics_object($object);
   }
 }
 
-function h5p_math_input_recurse_h5p_semantics_object($object) {
-  if ($object->type == 'text' && $object->widget == 'html') {
+function _h5p_math_input_recurse_h5p_semantics_object($object) {
+  if (isset($object->type) && $object->type == 'text' && isset($object->widget) && $object->widget == 'html') {
     array_push($object->tags, 'eqneditor');
   }
-  else if ($field = $object->field) {
-    h5p_math_input_recurse_h5p_semantics_object($field);
+  else if (isset($object->field)) {
+    $field = $object->field;
+    _h5p_math_input_recurse_h5p_semantics_object($field);
   }
-  else if ($fields = $object->fields) {
+  else if (isset($object->fields)) {
+    $fields = $object->fields;
     foreach ($fields as $field) {
-      h5p_math_input_recurse_h5p_semantics_object($field);
+      _h5p_math_input_recurse_h5p_semantics_object($field);
     }
   }
 }
