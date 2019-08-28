@@ -4,4 +4,4 @@ package: Custom
 type: module
 core: 8.x
 dependencies:
-  - h5p
+  - h5p:h5p
