@@ -72,7 +72,7 @@ CKEDITOR.plugins.add( 'ck_vme', {
                     tag.setAttribute("class","ce_latex");
 
                     // Get the value of a standard input
-                    tag.setText( '$$' + vmeLatexValue + '$$');
+                    tag.setText( '\\(' + vmeLatexValue + '\\)');
                     this.commitContent( tag );
                     if ( this.insertMode ){
                         this._.editor.insertElement(tag);

@@ -1,0 +1,5 @@
+services:
+  h5p_math_input.overrider:
+    class: Drupal\h5p_math_input\Config\H5pMathInputOverrides
+    tags:
+      - {name: config.factory.override, priority: 5}
