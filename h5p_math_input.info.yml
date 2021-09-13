@@ -3,5 +3,6 @@ description: Implements Visual Math Editor to h5p fields.
 package: Custom
 type: module
 core: 8.x
+core_version_requirement: ^8 || ^9
 dependencies:
   - h5p:h5p
